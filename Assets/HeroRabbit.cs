@@ -8,7 +8,13 @@ public class HeroRabbit : MonoBehaviour {
 	public float speed = 1;
 
 	Rigidbody2D myBody = null;
-	
+
+	bool isGrounded = false;
+
+	bool JumpActive = false;
+	float JumpTime = 0f;
+	public float MaxJumpTime = 2f;
+	public float JumpSpeed = 2f;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +29,9 @@ public class HeroRabbit : MonoBehaviour {
 		Animator animator = GetComponent<Animator>();
 		if(Mathf.Abs(value)>0)animator.SetBool("run",true);
 		else animator.SetBool("run", false);
+
+		if(this.isGrounded)animator.SetBool("jump", false);
+		else animator.SetBool("jump", true);
 	}
 
 	void FixedUpdate () {
@@ -53,7 +62,24 @@ public class HeroRabbit : MonoBehaviour {
 
 		Debug.DrawLine(from, to, Color.red);
 
+		if(Input.GetButtonDown("Jump") && isGrounded){
+			this.JumpActive = true;
+		}
 
+		if(this.JumpActive){
+			if(Input.GetButton("Jump")){
+				this.JumpTime += Time.deltaTime;
+				if(this.JumpTime<this.MaxJumpTime){
+					Vector2 vel = myBody.velocity;
+					vel.y = JumpSpeed*(1.0f - JumpTime/MaxJumpTime);
+					myBody.velocity=vel;	
+				}
+			}
+			else {
+				this.JumpActive = false;
+				this.JumpTime = 0;
+			}
+		}
 	}
 }
  
