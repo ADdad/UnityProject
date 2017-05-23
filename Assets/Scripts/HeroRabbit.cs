@@ -16,10 +16,13 @@ public class HeroRabbit : MonoBehaviour {
 	public float MaxJumpTime = 2f;
 	public float JumpSpeed = 2f;
 
+
+	Transform heroParent = null;
 	// Use this for initialization
 	void Start () {
 		myBody = this.GetComponent<Rigidbody2D> ();
 		LevelController.current.setStartPosition(transform.position);
+		this.heroParent = this.transform.parent;
 	}
 	
 	// Update is called once per frame
@@ -57,8 +60,14 @@ public class HeroRabbit : MonoBehaviour {
 
 		if(hit) {
 			isGrounded = true;
+			if(hit.transform != null && hit.transform.GetComponent<MovingPlatform>() != null){
+				setNewParent(this.transform, hit.transform);
+			}
 		}
-		else isGrounded = false;
+		else {
+			isGrounded = false;
+			setNewParent(this.transform, this.heroParent);
+		}
 
 		Debug.DrawLine(from, to, Color.red);
 
@@ -81,5 +90,13 @@ public class HeroRabbit : MonoBehaviour {
 			}
 		}
 	}
+
+	static void setNewParent(Transform obj, Transform new_parent){
+		if(obj.transform.parent != new_parent){
+			Vector3 pos = obj.transform.position;
+			obj.transform.parent = new_parent;
+			obj.transform.position = pos;
+		}
+	}	
 }
  
