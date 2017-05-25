@@ -7,15 +7,21 @@ public class HeroRabbit : MonoBehaviour {
 
 	public float speed = 1;
 
+
 	Rigidbody2D myBody = null;
 
 	bool isGrounded = false;
-
+	bool isDead = false;
+	int size = 1;//size of the rabbit
+	
 	bool JumpActive = false;
 	float JumpTime = 0f;
 	public float MaxJumpTime = 2f;
 	public float JumpSpeed = 2f;
 
+	float time_after_boom = 0;
+	bool isGhost = false;
+	int ghost_time = 4;//time how long rabbit is ghost is sec
 
 	Transform heroParent = null;
 	// Use this for initialization
@@ -35,6 +41,18 @@ public class HeroRabbit : MonoBehaviour {
 
 		if(this.isGrounded)animator.SetBool("jump", false);
 		else animator.SetBool("jump", true);
+
+
+		if(this.isDead){
+			animator.SetBool("dead", true);
+			if(time_after_boom>0.65){
+				LevelController.current.onRabbitDeath(this);
+				isDead=false;
+			}
+		}
+		else animator.SetBool("dead", false);
+
+		
 	}
 
 	void FixedUpdate () {
@@ -89,6 +107,14 @@ public class HeroRabbit : MonoBehaviour {
 				this.JumpTime = 0;
 			}
 		}
+
+		time_after_boom+=Time.deltaTime;
+		if(time_after_boom>ghost_time && isGhost){
+			isGhost=false;
+			GetComponent<SpriteRenderer>().color = Color.white;
+		}
+
+
 	}
 
 	static void setNewParent(Transform obj, Transform new_parent){
@@ -97,6 +123,37 @@ public class HeroRabbit : MonoBehaviour {
 			obj.transform.parent = new_parent;
 			obj.transform.position = pos;
 		}
-	}	
+	}
+
+	internal void boomCatch(){
+		if(!isGhost){
+			GetComponent<SpriteRenderer>().color = Color.red;
+			time_after_boom = 0;
+			isGhost=true;
+			if(size>0){
+				changeSize(0.75f);
+				size--;
+			}
+			else{
+				isDead=true;
+			}
+	}
+	}
+
+	internal void mushroomCatch(){
+		if(size<2){
+			changeSize(1.5f);
+			size++;
+		}
+	}
+
+	internal void changeSize(float times){
+		Vector3 begin = this.transform.localScale;
+		begin.x*=times;
+		begin.y*=times;
+		this.transform.localScale = begin;
+	}
+
+	internal bool getGhost(){return isGhost;}
 }
  
