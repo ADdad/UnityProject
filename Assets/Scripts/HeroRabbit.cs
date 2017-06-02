@@ -12,7 +12,7 @@ public class HeroRabbit : MonoBehaviour {
 
 	bool isGrounded = false;
 	bool isDead = false;
-	int size = 1;//size of the rabbit
+	internal int size = 1;//size of the rabbit
 	
 	bool JumpActive = false;
 	float JumpTime = 0f;
@@ -22,8 +22,11 @@ public class HeroRabbit : MonoBehaviour {
 	float time_after_boom = 0;
 	bool isGhost = false;
 	int ghost_time = 4;//time how long rabbit is ghost is sec
+	float death_time = 0.65f;
 
 	Transform heroParent = null;
+
+	public static HeroRabbit lastRabbit = null;
 	// Use this for initialization
 	void Start () {
 		myBody = this.GetComponent<Rigidbody2D> ();
@@ -31,6 +34,10 @@ public class HeroRabbit : MonoBehaviour {
 		this.heroParent = this.transform.parent;
 	}
 	
+	void Awake() {
+		lastRabbit = this;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		float value = Input.GetAxis ("Horizontal");
@@ -45,7 +52,7 @@ public class HeroRabbit : MonoBehaviour {
 
 		if(this.isDead){
 			animator.SetBool("dead", true);
-			if(time_after_boom>0.65){
+			if(time_after_boom>death_time){
 				LevelController.current.onRabbitDeath(this);
 				isDead=false;
 			}
@@ -137,6 +144,15 @@ public class HeroRabbit : MonoBehaviour {
 			else{
 				isDead=true;
 			}
+	}
+	}
+
+	internal void orcAttack(){
+		if(!isGhost){
+			GetComponent<SpriteRenderer>().color = Color.red;
+			time_after_boom = 0;
+			isGhost=true;
+			isDead=true;
 	}
 	}
 
