@@ -1,25 +1,30 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class GreenOrc : MonoBehaviour {
+public class RedOrc : MonoBehaviour {
 
 	public enum Mode {
 		GoToA,
 		GoToB,
 		Attack,
-		Triggered,
 		Dead,
-		Attacked
+		Attacked,
+		Stay
 	}
 
 	Mode mode = Mode.GoToA;
+
+	public GameObject prefabCarrot;
+
 
 	public Vector3 pointA;
 	public Vector3 pointB;
 
 	public float speed = 1;
 	float startPoint, finishPoint;
+	float last_carrot = 0;
 
 	Rigidbody2D myBody = null;
 
@@ -29,16 +34,16 @@ public class GreenOrc : MonoBehaviour {
 		startPoint = Mathf.Min(pointA.x, pointB.x);
 		finishPoint = Mathf.Max(pointA.x, pointB.x);
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
 		Animator animator = GetComponent<Animator>();
 		if(mode==Mode.GoToA || mode==Mode.GoToB){
 			animator.SetBool("walk",true);}
-		if(mode==Mode.Triggered)animator.SetBool("run",true);
-		else animator.SetBool("run",false);
 		if(mode==Mode.Attack){
-			animator.SetTrigger("attack");
+			animator.SetBool("stay",true);
+			animator.SetBool("walk", false);
 		}
 		if(mode==Mode.Attacked)animator.SetTrigger("attacked");
 	}
@@ -52,15 +57,20 @@ public class GreenOrc : MonoBehaviour {
 		else if (value>0) sr.flipX = true;
 
 		
-
 		if (Mathf.Abs (value) > 0) {
 			Vector2 vel = myBody.velocity;
 			vel.x = value * speed;
 			myBody.velocity = vel;
 		}
 
-		if(mode==Mode.Attack)HeroRabbit.lastRabbit.orcAttack();
-
+		if(mode==Mode.Attack && (Time.time - last_carrot>2.0f)){
+			Animator animator = GetComponent<Animator>();
+			animator.SetTrigger("attack");
+			if(sr.flipX)launchCarrot(1.0f);
+			else launchCarrot(-1.0f);
+			last_carrot=Time.time;
+		}
+		
 	}
 
 	float getDirection(){
@@ -69,9 +79,9 @@ public class GreenOrc : MonoBehaviour {
 		
 		if(rabbit_pos.x>startPoint
 			&& rabbit_pos.x<finishPoint && mode!=Mode.Attack 
-			&& Mathf.Abs(rabbit_pos.y-my_pos.y)<GetComponent<BoxCollider2D>().size.y) mode=Mode.Triggered;
-		else if(mode==Mode.Triggered) mode = Mode.GoToA;
-		
+			&& Mathf.Abs(rabbit_pos.y-my_pos.y)<GetComponent<BoxCollider2D>().size.y) mode=Mode.Attack;
+		else if((rabbit_pos.x<startPoint
+			|| rabbit_pos.x>finishPoint) && mode==Mode.Attack) mode = Mode.GoToA;
 		if(mode==Mode.GoToA){
 			if(my_pos.x > startPoint)return -1;
 			else {
@@ -86,10 +96,12 @@ public class GreenOrc : MonoBehaviour {
 				return -1;
 			}
 		}
-		if(mode==Mode.Triggered){
-			//Move towards rabbit
-			if(my_pos.x < rabbit_pos.x)return 2;
-			else return -2;
+
+		if(mode==Mode.Attack){
+			SpriteRenderer sr = GetComponent<SpriteRenderer>();
+
+			if (rabbit_pos.x<my_pos.x) sr.flipX = false;
+			else if (rabbit_pos.x>my_pos.x) sr.flipX = true;
 		}
 		return 0;
 	}
@@ -117,6 +129,17 @@ public class GreenOrc : MonoBehaviour {
 			{
 			mode=Mode.GoToA;
 			}
+	}
+
+	void launchCarrot(float direction){
+		GameObject obj = GameObject.Instantiate(this.prefabCarrot);
+ 		
+ 		Vector3 my_pos = this.transform.position;
+		my_pos.y=this.GetComponent<BoxCollider2D>().bounds.center.y;
+		
+		Carrot carrot = obj.GetComponent<Carrot>();
+		carrot.transform.position = my_pos;
+		carrot.launch(direction);
 	}
 
 }

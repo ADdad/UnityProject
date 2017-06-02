@@ -6,7 +6,7 @@ public class Bomb : Collectable {
 
 	protected override void OnRabbitHit (HeroRabbit rabit)
 	{
-		if(!rabit.getGhost())this.CollectedHide ();
+		if(!rabit.getGhost())this.CollectedHide();
 		rabit.boomCatch();
 	}
 }
