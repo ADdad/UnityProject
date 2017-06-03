@@ -103,7 +103,10 @@ public class GreenOrc : MonoBehaviour {
 			Vector3 contactPoint = col.contacts[0].point;
             float up = this.GetComponent<BoxCollider2D>().bounds.max.y;
  			
- 			if(Mathf.Abs(contactPoint.y-up)<0.02f || HeroRabbit.lastRabbit.size>1)mode=Mode.Attacked;
+ 			if(Mathf.Abs(contactPoint.y-up)<0.02f || HeroRabbit.lastRabbit.size>1){
+ 				mode=Mode.Attacked;
+ 				HeroRabbit.lastRabbit.time_after_kill=0;
+ 			}
 			else mode=Mode.Attack;
 		}
 	}
