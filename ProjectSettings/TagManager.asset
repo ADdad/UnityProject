@@ -15,7 +15,7 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - FarBackground
   - 
   - 
   - 
@@ -44,6 +44,9 @@ TagManager:
     locked: 0
   - name: NearBackground
     uniqueID: 109105171
+    locked: 0
+  - name: Ground
+    uniqueID: 1846703033
     locked: 0
   - name: Default
     uniqueID: 0
