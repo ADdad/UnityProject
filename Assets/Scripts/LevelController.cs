@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +6,7 @@ public class LevelController : MonoBehaviour {
 
 	public static LevelController current;
 	Vector3 startingPosition;
+	public HealthBar hb;
 
 	void Awake() {
 		current = this;
@@ -17,5 +18,6 @@ public class LevelController : MonoBehaviour {
 
 	public void onRabbitDeath(HeroRabbit rabit){
 		rabit.transform.position = this.startingPosition;
+		hb.die();
 	}
 }
