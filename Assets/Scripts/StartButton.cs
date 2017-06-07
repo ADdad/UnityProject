@@ -10,8 +10,8 @@ public class StartButton : MonoBehaviour {
 		playButton.signalOnClick.AddListener(this.onPlay);
 	}
 	void onPlay() {
-		Debug.Log("Work");
 		SceneManager.LoadScene ("ChooseLevelScene");
+		Debug.Log("MB");
 	}
 
 }
