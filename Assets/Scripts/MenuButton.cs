@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartButton : MonoBehaviour {
+public class MenuButton : MonoBehaviour {
 
-	public MyButton playButton;
+	public MyButton menuButton;
+	
+
 	void Start () {
-		playButton.signalOnClick.AddListener(this.onPlay);
+		menuButton.signalOnClick.AddListener(this.onClose);
 	}
-	void onPlay() {
+	void onClose() {
 		SceneManager.LoadScene ("ChooseLevelScene");
 	}
-
 }

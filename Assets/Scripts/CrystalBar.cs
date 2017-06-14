@@ -15,8 +15,6 @@ public class CrystalBar : MonoBehaviour {
     	BLUE = 2
 	}
 
-    void Start(){
-    }
 
     public void add(int col)
     {
