@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4970332510165304}
   - component: {fileID: 114151856900353006}
   m_Layer: 5
-  m_Name: Laber
+  m_Name: LabelC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1109664701289632}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -181, y: 140, z: 0}
+  m_LocalPosition: {x: -99, y: 157, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4970332510165304}
@@ -64,7 +64,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1205339848982904}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23, y: 0, z: 0}
+  m_LocalPosition: {x: 24, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4212583484639370}
@@ -92,26 +92,26 @@ MonoBehaviour:
   bottomAnchor:
     target: {fileID: 4212583484639370}
     relative: 0
-    absolute: 27
+    absolute: 10
   topAnchor:
     target: {fileID: 4212583484639370}
     relative: 1
-    absolute: -27
+    absolute: -6
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 138
-  mHeight: 24
+  mWidth: 141
+  mHeight: 18
   mDepth: 1
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.75
+  aspectRatio: 7.8333335
   keepCrispWhenShrunk: 2
   mTrueTypeFont: {fileID: 12800000, guid: 0cb3697f36327471bb44edce51ece5a8, type: 3}
   mFont: {fileID: 0}
-  mText: 20
+  mText: 0001
   mFontSize: 50
   mFontStyle: 0
   mAlignment: 0
@@ -152,30 +152,30 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 0}
     relative: 0
-    absolute: 14
+    absolute: 131
   rightAnchor:
     target: {fileID: 0}
     relative: 0.5
-    absolute: -89
+    absolute: -4
   bottomAnchor:
     target: {fileID: 0}
     relative: 1
-    absolute: -79
+    absolute: -43
   topAnchor:
     target: {fileID: 0}
     relative: 1
-    absolute: -1
+    absolute: -9
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 184
-  mHeight: 78
+  mWidth: 190
+  mHeight: 34
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.3589745
+  aspectRatio: 5.5882354
   mType: 0
   mFillDirection: 4
   mFillAmount: 1

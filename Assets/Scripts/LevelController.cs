@@ -7,6 +7,7 @@ public class LevelController : MonoBehaviour {
 	public static LevelController current;
 	Vector3 startingPosition;
 	public HealthBar hb;
+	public CrystalBar cb;
 
 	void Awake() {
 		current = this;

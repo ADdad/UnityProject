@@ -37,6 +37,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4248427856163274}
   - component: {fileID: 114903392828248188}
+  - component: {fileID: 65880054772734052}
+  - component: {fileID: 114027581039996950}
+  - component: {fileID: 114641369715279834}
+  - component: {fileID: 114283311495750078}
   m_Layer: 5
   m_Name: MusicButton
   m_TagString: Untagged
@@ -90,6 +94,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4608038151986364}
   - component: {fileID: 114627072047148730}
+  - component: {fileID: 65300018992588808}
+  - component: {fileID: 114680799714421694}
+  - component: {fileID: 114913026046025568}
+  - component: {fileID: 114427850318281246}
   m_Layer: 5
   m_Name: SoundButton
   m_TagString: Untagged
@@ -230,6 +238,18 @@ Transform:
   m_Father: {fileID: 4687404140792840}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65300018992588808
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1583766482491434}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 44, y: 46, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65300568718087760
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -240,7 +260,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 759, y: 458, z: 0}
+  m_Size: {x: 705, y: 428, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65461100988213052
 BoxCollider:
@@ -254,6 +274,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 161.7143, y: 122.285706, z: 0}
   m_Center: {x: -0.1428566, y: -0.0000019073486, z: 0}
+--- !u!65 &65880054772734052
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1098891534990780}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 44, y: 46, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65909696415604574
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -272,6 +304,22 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1419646838724278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc20ca45195c8f4429d035f1b8412c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalOnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114027581039996950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1098891534990780}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc20ca45195c8f4429d035f1b8412c59, type: 3}
@@ -437,14 +485,14 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 0.684}
   mPivot: 4
-  mWidth: 759
-  mHeight: 458
+  mWidth: 705
+  mHeight: 428
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.6572052
+  aspectRatio: 1.6471963
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -464,6 +512,35 @@ MonoBehaviour:
   mFixedAspect: 0
   mPixelSize: 1
   nextSprite: {fileID: 0}
+--- !u!114 &114283311495750078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1098891534990780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 1098891534990780}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick:
+  - mTarget: {fileID: 114027581039996950}
+    mMethodName: _onClick
+    mParameters: []
+    oneShot: 0
 --- !u!114 &114290623931545134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -597,6 +674,35 @@ MonoBehaviour:
   mFixedAspect: 0
   mPixelSize: 1
   nextSprite: {fileID: 0}
+--- !u!114 &114427850318281246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1583766482491434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 1583766482491434}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick:
+  - mTarget: {fileID: 114680799714421694}
+    mMethodName: _onClick
+    mParameters: []
+    oneShot: 0
 --- !u!114 &114574463094986292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -643,7 +749,7 @@ MonoBehaviour:
   mHeight: 46
   mDepth: 2
   mMat: {fileID: 0}
-  autoResizeBoxCollider: 0
+  autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 0.95652175
@@ -666,6 +772,36 @@ MonoBehaviour:
   mFixedAspect: 0
   mPixelSize: 1
   nextSprite: {fileID: 0}
+--- !u!114 &114641369715279834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1098891534990780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd40c10ada1ffe14ea0beecb238b2eaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playButton: {fileID: 114027581039996950}
+  oned: {fileID: 21300000, guid: f0cf33b7ce34e41798c3899a84839cbd, type: 3}
+  off: {fileID: 21300000, guid: 05d63ac62d0544d53a2005d0ceb838ea, type: 3}
+--- !u!114 &114680799714421694
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1583766482491434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc20ca45195c8f4429d035f1b8412c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalOnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114878828334116918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -704,7 +840,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3003
+  startingRenderQueue: 3009
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -749,7 +885,7 @@ MonoBehaviour:
   mHeight: 46
   mDepth: 2
   mMat: {fileID: 0}
-  autoResizeBoxCollider: 0
+  autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 0.95652175
@@ -772,6 +908,20 @@ MonoBehaviour:
   mFixedAspect: 0
   mPixelSize: 1
   nextSprite: {fileID: 0}
+--- !u!114 &114913026046025568
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1583766482491434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 421e01a2e802ba94faa21204409d43d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playButton: {fileID: 114680799714421694}
+  oned: {fileID: 21300000, guid: 9d51c550af7f042448b0d69bc8f39958, type: 3}
+  off: {fileID: 21300000, guid: a96b3c306d8f54d59992608610fa8420, type: 3}
 --- !u!114 &114959969309503988
 MonoBehaviour:
   m_ObjectHideFlags: 1

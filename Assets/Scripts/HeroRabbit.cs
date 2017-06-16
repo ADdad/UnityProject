@@ -27,18 +27,49 @@ public class HeroRabbit : MonoBehaviour {
 	Transform heroParent = null;
 
 	public static HeroRabbit lastRabbit = null;
+
+	public AudioClip dieSound = null;
+	public AudioClip walkSound = null;
+	public AudioClip groundingSound = null;
+	public AudioClip music = null;
+	AudioSource dieSource = null;
+	AudioSource moveSource = null;
+	AudioSource groundSource = null;
+	AudioSource musicSource = null;
 	// Use this for initialization
+
 	void Start () {
 		myBody = this.GetComponent<Rigidbody2D> ();
 		LevelController.current.setStartPosition(transform.position);
 		this.heroParent = this.transform.parent;
 		time_after_kill = MaxJumpTime;
+
+		dieSource = gameObject.AddComponent<AudioSource> ();
+		moveSource = gameObject.AddComponent<AudioSource> ();
+		groundSource = gameObject.AddComponent<AudioSource> ();
+		dieSource.clip = dieSound;
+		moveSource.clip = walkSound;
+		groundSource.clip = groundingSound;
+
+		musicSource = gameObject.AddComponent<AudioSource>();
+		musicSource.clip = music;
+		musicSource.loop = true;
+		onMusic();	
+	}
+
+	public void onMusic(){
+		if(SoundManager.Instance.isMusicOn())musicSource.Play();
+	}
+
+	public void offMusic(){
+		musicSource.Stop();
 	}
 	
 	void Awake() {
 		lastRabbit = this;
 	}
 
+	
 	// Update is called once per frame
 	void Update () {
 		float value = Input.GetAxis ("Horizontal");
@@ -74,6 +105,7 @@ public class HeroRabbit : MonoBehaviour {
 			vel.x = value * speed;
 			myBody.velocity = vel;
 		}
+		else moveSource.Stop();
 
 		Vector3 from = transform.position+Vector3.up*0.3f;
 		Vector3 to = transform.position+Vector3.down * 0.1f;
@@ -85,6 +117,7 @@ public class HeroRabbit : MonoBehaviour {
 			isGrounded = true;
 			if(hit.transform != null && hit.transform.GetComponent<MovingPlatform>() != null){
 				setNewParent(this.transform, hit.transform);
+				groundSound();
 			}
 		}
 		else {
@@ -145,6 +178,9 @@ public class HeroRabbit : MonoBehaviour {
 			}
 			else{
 				isDead=true;
+				if(SoundManager.Instance.isSoundOn()) {
+				dieSource.Play();	
+				}
 			}
 	}
 	}
@@ -155,6 +191,9 @@ public class HeroRabbit : MonoBehaviour {
 			time_after_boom = 0;
 			isGhost=true;
 			isDead=true;
+			if(SoundManager.Instance.isSoundOn()) {
+				dieSource.Play();	
+			}
 	}
 	}
 
@@ -182,5 +221,18 @@ public class HeroRabbit : MonoBehaviour {
 	internal bool getGhost(){return isGhost;}
 
 	void respawn(){LevelController.current.onRabbitDeath(this);}
+
+	void moveSound(){
+		if(SoundManager.Instance.isSoundOn() && !moveSource.isPlaying) {
+				moveSource.Play();	
+			}
+	}
+
+
+	void groundSound(){
+		if(SoundManager.Instance.isSoundOn() && !groundSource.isPlaying) {
+				groundSource.Play();	
+			}
+	}
 }
  

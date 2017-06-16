@@ -7,6 +7,7 @@ public class CrystalBar : MonoBehaviour {
  	GameObject grandChild;
     int chld = 0;
     public Sprite red, green, blue;
+    public int[] colir = {-1,-1,-1};
 
     public enum Color
 	{
@@ -17,7 +18,8 @@ public class CrystalBar : MonoBehaviour {
 
 
     public void add(int col)
-    {
+    {   
+        colir[chld]=col;
     	Color color = (Color)col;
         grandChild = this.gameObject.transform.GetChild(chld).gameObject;
         switch(color) {
@@ -31,4 +33,12 @@ public class CrystalBar : MonoBehaviour {
         chld++;
 
     }
+
+    public void loadSprites(Sprite red, Sprite green, Sprite blue){
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+    }
+
+    public int collectedCrystals(){return chld;}
 }

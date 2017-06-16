@@ -111,6 +111,10 @@ MonoBehaviour:
   speed: 2
   MaxJumpTime: 3
   JumpSpeed: 3
+  dieSound: {fileID: 8300000, guid: 7553580dee44e4f96b2efa5f4e5e17c3, type: 3}
+  walkSound: {fileID: 8300000, guid: 0d024189a711c440997b2d9f341c8dd0, type: 3}
+  groundingSound: {fileID: 8300000, guid: 4678dc960a2b949329a55d696cf4ec68, type: 3}
+  music: {fileID: 8300000, guid: 57a5b2120c2d04fa9bcb5b2e99ee9361, type: 3}
 --- !u!114 &114459380498493340
 MonoBehaviour:
   m_ObjectHideFlags: 1

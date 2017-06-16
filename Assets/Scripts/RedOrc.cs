@@ -18,6 +18,8 @@ public class RedOrc : MonoBehaviour {
 
 	public GameObject prefabCarrot;
 
+	public AudioClip attackSound = null;
+	AudioSource attackSource = null;
 
 	public Vector3 pointA;
 	public Vector3 pointB;
@@ -33,6 +35,9 @@ public class RedOrc : MonoBehaviour {
 		myBody = this.GetComponent<Rigidbody2D>();
 		startPoint = Mathf.Min(pointA.x, pointB.x);
 		finishPoint = Mathf.Max(pointA.x, pointB.x);
+
+		attackSource = gameObject.AddComponent<AudioSource> ();
+		attackSource.clip = attackSound;
 	}
 
 	
@@ -143,6 +148,13 @@ public class RedOrc : MonoBehaviour {
 		Carrot carrot = obj.GetComponent<Carrot>();
 		carrot.transform.position = my_pos;
 		carrot.launch(direction);
+	}
+
+	void attackPlay(){
+		if(SoundManager.Instance.isSoundOn()) {
+				attackSource.Play();	
+			}
+		
 	}
 
 }

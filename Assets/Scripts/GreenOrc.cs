@@ -18,6 +18,9 @@ public class GreenOrc : MonoBehaviour {
 	public Vector3 pointA;
 	public Vector3 pointB;
 
+	public AudioClip attackSound = null;
+	AudioSource attackSource = null;
+
 	public float speed = 1;
 	float startPoint, finishPoint;
 
@@ -28,6 +31,9 @@ public class GreenOrc : MonoBehaviour {
 		myBody = this.GetComponent<Rigidbody2D>();
 		startPoint = Mathf.Min(pointA.x, pointB.x);
 		finishPoint = Mathf.Max(pointA.x, pointB.x);
+
+		attackSource = gameObject.AddComponent<AudioSource> ();
+		attackSource.clip = attackSound;
 	}
 	
 	// Update is called once per frame
@@ -120,6 +126,13 @@ public class GreenOrc : MonoBehaviour {
 			{
 			mode=Mode.GoToA;
 			}
+	}
+
+	void attackPlay(){
+		if(SoundManager.Instance.isSoundOn()) {
+				attackSource.Play();	
+			}
+		
 	}
 
 }

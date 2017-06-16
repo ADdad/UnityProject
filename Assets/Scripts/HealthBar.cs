@@ -7,6 +7,7 @@ public class HealthBar : MonoBehaviour {
 
 
     GameObject grandChild;
+    public GameObject loseScreenPrefab;
     int chld = 0;
     public Sprite change;
 
@@ -20,7 +21,11 @@ public class HealthBar : MonoBehaviour {
 
         grandChild = this.gameObject.transform.GetChild(chld).gameObject;
         grandChild.GetComponent<UI2DSprite>().sprite2D = change;
-        if(chld<1){SceneManager.LoadScene ("ChooseLevelScene");}
+        if(chld<1){
+            GameObject parent = UICamera.first.transform.parent.gameObject;
+
+            GameObject obj = NGUITools.AddChild(parent, loseScreenPrefab);
+        }
 
     }
 }

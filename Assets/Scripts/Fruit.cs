@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,13 +6,25 @@ public class Fruit : Collectable {
 
 	public UILabel coinsLabel;
 
+	public static int id = 0;
 	static int fruits_quantity = 0;
-	public int fruits_max = 11;
+	static int fruits_max = 0;
+	int curr_id = 0;
+
+	void Start(){
+		fruits_quantity = 0;
+		curr_id = id;
+		id++;
+		fruits_max = id;
+		PlayerStats.stat.setMaxFruits(id);
+		coinsLabel.text = fruits_quantity+"/"+fruits_max;
+	}
+	
 	protected override void OnRabbitHit (HeroRabbit rabit)
 	{
-
+		PlayerStats.stat.addFruit(curr_id);
 		fruits_quantity++;
 		coinsLabel.text = fruits_quantity+"/"+fruits_max;
-		this.CollectedHide ();
+		this.CollectedHide();
 	}
 }
