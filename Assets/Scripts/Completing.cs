@@ -25,20 +25,12 @@ public class Completing : MonoBehaviour {
 		if(ls.level2 && levelNum==2)this.GetComponent<SpriteRenderer>().sprite = galochka;
 	}
 	if(chk==Check.Fruits){
-		bool[] fr = ls.fruits;
-		bool all = true;
-		for(int i = 0; i<fr.Length;i++){
-			if(!fr[i]){
-				all=false;
-				break;}
-		}
-
-		if(PlayerStats.stat.isLevelEnded(1) && levelNum==1)this.GetComponent<SpriteRenderer>().sprite = galochka;
-		if(PlayerStats.stat.isLevelEnded(2) && levelNum==2)this.GetComponent<SpriteRenderer>().sprite = galochka;
+		if(ls.allFruits1 && levelNum==1)this.GetComponent<SpriteRenderer>().sprite = galochka;
+		if(ls.allFruits2 && levelNum==2)this.GetComponent<SpriteRenderer>().sprite = galochka;
 	}
 	if(chk==Check.Crystals){
-		if(ls.all_crystal && levelNum==1)this.GetComponent<SpriteRenderer>().sprite = galochka;
-		if(ls.all_crystal && levelNum==2)this.GetComponent<SpriteRenderer>().sprite = galochka;
+		if(ls.all_crystal[0] && levelNum==1)this.GetComponent<SpriteRenderer>().sprite = galochka;
+		if(ls.all_crystal[1] && levelNum==2)this.GetComponent<SpriteRenderer>().sprite = galochka;
 	}
 	}
 	}

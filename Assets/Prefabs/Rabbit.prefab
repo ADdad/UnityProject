@@ -24,7 +24,9 @@ GameObject:
   - component: {fileID: 114459380498493340}
   - component: {fileID: 114420099765899792}
   - component: {fileID: 50836427006888262}
-  - component: {fileID: 70609204853631538}
+  - component: {fileID: 114819208147370334}
+  - component: {fileID: 114440090918560138}
+  - component: {fileID: 61264168215564458}
   m_Layer: 0
   m_Name: Rabbit
   m_TagString: Player
@@ -65,8 +67,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &70609204853631538
-CapsuleCollider2D:
+--- !u!61 &61264168215564458
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -77,9 +79,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.023406144, y: 0.95753473}
-  m_Size: {x: 0.6952351, y: 1.7234317}
-  m_Direction: 0
+  m_Offset: {x: 0.015114307, y: 0.78990304}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.76064956, y: 1.3346925}
+  m_EdgeRadius: 0
 --- !u!95 &95267761787676594
 Animator:
   serializedVersion: 3
@@ -108,13 +120,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3998260f5a5dc16408e06ab789e03eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  MaxJumpTime: 3
+  speed: 3
+  MaxJumpTime: 2
   JumpSpeed: 3
   dieSound: {fileID: 8300000, guid: 7553580dee44e4f96b2efa5f4e5e17c3, type: 3}
   walkSound: {fileID: 8300000, guid: 0d024189a711c440997b2d9f341c8dd0, type: 3}
   groundingSound: {fileID: 8300000, guid: 4678dc960a2b949329a55d696cf4ec68, type: 3}
   music: {fileID: 8300000, guid: 57a5b2120c2d04fa9bcb5b2e99ee9361, type: 3}
+--- !u!114 &114440090918560138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1444394117881510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c451184de5a98498193df734803594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fruits: 
+  fruits2: 
 --- !u!114 &114459380498493340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,6 +152,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rabbit: {fileID: 114420099765899792}
+--- !u!114 &114819208147370334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1444394117881510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c451184de5a98498193df734803594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fruits: 
+  fruits2: 
 --- !u!212 &212319397591101254
 SpriteRenderer:
   m_ObjectHideFlags: 1

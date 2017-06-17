@@ -12,8 +12,10 @@ public class HeroRabbit : MonoBehaviour {
 
 	bool isGrounded = false;
 	bool isDead = false;
+	bool isBlocked = false;
 	internal int size = 1;//size of the rabbit
-	
+	bool chk1 = true;
+
 	bool JumpActive = false;
 	float JumpTime = 0f;
 	public float MaxJumpTime = 2f;
@@ -94,7 +96,7 @@ public class HeroRabbit : MonoBehaviour {
 	void FixedUpdate () {
 		
 		float value = Input.GetAxis ("Horizontal");
-		
+		if(isBlocked)value=0;
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
 		if (value<0) sr.flipX = true;
@@ -112,15 +114,19 @@ public class HeroRabbit : MonoBehaviour {
 		int layer_id = 1 << LayerMask.NameToLayer("Ground");
 
 		RaycastHit2D hit = Physics2D.Linecast(from, to, layer_id);
-
+		
 		if(hit) {
 			isGrounded = true;
 			if(hit.transform != null && hit.transform.GetComponent<MovingPlatform>() != null){
 				setNewParent(this.transform, hit.transform);
-				groundSound();
+				if(chk1){
+					groundSound();
+					chk1=false;
+				}
 			}
 		}
 		else {
+			chk1=true;
 			isGrounded = false;
 			setNewParent(this.transform, this.heroParent);
 		}
@@ -234,5 +240,7 @@ public class HeroRabbit : MonoBehaviour {
 				groundSource.Play();	
 			}
 	}
+
+	public void block(bool bl){isBlocked=bl;}
 }
  

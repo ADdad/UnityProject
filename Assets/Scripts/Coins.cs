@@ -12,7 +12,7 @@ public class Coins : Collectable {
 	{
 
 		coins_quantity++;
-		PlayerStats.stat.addCoin();
+		PlayerStats.stat.addCoin(LevelController.current.Level);
 		string coins = coins_quantity.ToString();
 		int cLength = coins.Length;
 		for(int i=0;i<4-cLength; i++){

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class MusicButton : MonoBehaviour {
 
 	public MyButton playButton;
@@ -17,11 +17,14 @@ public class MusicButton : MonoBehaviour {
 		SoundManager.Instance.setMusicOn(!SoundManager.Instance.isMusicOn());
 		if(SoundManager.Instance.isMusicOn()){
 			this.GetComponent<UI2DSprite>().sprite2D = oned;
-			HeroRabbit.lastRabbit.onMusic();
+			if(SceneManager.GetActiveScene().name=="MainMenu")StartButton.st.onMusic();
+			else HeroRabbit.lastRabbit.onMusic();
 		}
 		else {
 			this.GetComponent<UI2DSprite>().sprite2D = off;
-			HeroRabbit.lastRabbit.offMusic();
+			if(SceneManager.GetActiveScene().name=="MainMenu")StartButton.st.offMusic();
+			else HeroRabbit.lastRabbit.offMusic();
+			
 		}
 	}
 }

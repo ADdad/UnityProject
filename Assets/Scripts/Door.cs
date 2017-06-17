@@ -13,10 +13,15 @@ public class Door : MonoBehaviour {
 void Start(){
 	string str = PlayerPrefs.GetString ("stats", null);
 	LevelStat ls = JsonUtility.FromJson<LevelStat>(str);
-	if(sceneName=="Level1" || ls.level2){
+	if(sceneName=="Level1"){
 		let_get=true;
 	}
-	if(sceneName=="Level2" || ls.level2)this.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().sprite=null;
+	if(ls!=null){
+		if(sceneName=="Level2" && ls.level1){
+			Destroy(this.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>());
+			let_get=true;
+		}
+	}
 }
 
 void OnTriggerEnter2D(Collider2D collider){

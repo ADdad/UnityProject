@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour {
     public GameObject loseScreenPrefab;
     int chld = 0;
     public Sprite change;
-
+    public Sprite hp;
     void Start(){
     	chld = transform.childCount;
     }
@@ -27,5 +27,15 @@ public class HealthBar : MonoBehaviour {
             GameObject obj = NGUITools.AddChild(parent, loseScreenPrefab);
         }
 
+    }
+
+    public void getLive()
+    {   
+        if(chld<3){
+        chld++;
+
+        grandChild = this.gameObject.transform.GetChild(chld).gameObject;
+        grandChild.GetComponent<UI2DSprite>().sprite2D = hp;
+    }
     }
 }
