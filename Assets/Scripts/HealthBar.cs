@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour {
 
     GameObject grandChild;
     public GameObject loseScreenPrefab;
-    int chld = 0;
+    public int chld = 0;
     public Sprite change;
     public Sprite hp;
     void Start(){
@@ -30,12 +30,13 @@ public class HealthBar : MonoBehaviour {
     }
 
     public void getLive()
-    {   
+    {       
         if(chld<3){
-        chld++;
+        
 
         grandChild = this.gameObject.transform.GetChild(chld).gameObject;
         grandChild.GetComponent<UI2DSprite>().sprite2D = hp;
+        chld++;
     }
     }
 }

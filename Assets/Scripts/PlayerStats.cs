@@ -19,11 +19,18 @@ public class PlayerStats : MonoBehaviour {
 	public void setCoins(int coins){this.coins=coins;}
 	public void addFruit(int id){fruits[id]=true;
 	}
-	public void setMaxFruits(int quantity){
+	public void setMaxFruits(int quantity, int lvl){
+		string str = PlayerPrefs.GetString ("stats", null);
+		if(str!=null){
+		LevelStat ls = JsonUtility.FromJson<LevelStat>(str);
+		if(lvl==1)fruits = ls.fruits;
+		if(lvl==2)fruits = ls.fruits2;
+		}
 		if(fruits==null)fruits = new bool[quantity];
 		else if(quantity>fruits.Length)fruits = new bool[quantity];
 	}
 	public void setMaxFruits2(int quantity){
+		
 		if(fruits2==null)fruits = new bool[quantity];
 		else if(quantity>fruits2.Length)fruits2 = new bool[quantity];
 	
@@ -78,20 +85,6 @@ public class PlayerStats : MonoBehaviour {
 		PlayerPrefs.SetString("stats", str);
 		PlayerPrefs.Save();
 	}
-
-	/*public void unloadStatistics(){
-		string str = PlayerPrefs.GetString ("stats", null);
-		LevelStat ls = JsonUtility.FromJson<LevelStat>(str);
-		/*if(ls==null || PlayerStats.stat==null) {
-		PlayerStats.stat = this;
-	}
-	if(ls!=null){
-		PlayerStats.stat.allCrystalsSet(0, ls.all_crystal);
-		PlayerStats.stat.endLevel1(ls.level1);
-		PlayerStats.stat.setCoins(ls.coins);
-		PlayerStats.stat.fruits = ls.fruits;
-		}	
-	}*/
 
 	public void loadStatistics(){
 		stat = new PlayerStats();
